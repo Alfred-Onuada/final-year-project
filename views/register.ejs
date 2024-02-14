@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="Site keywords here" />
+    <meta name="description" content="" />
+    <meta name="copyright" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Title -->
+    <title>BrainDetect - Quick and Efficient Tumor Detection System</title>
+
+    <%- include('./partials/header-links.ejs') %>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <%- include('./partials/preloader.ejs') %>
+    <!-- End Preloader -->
+
+    <%- include('./partials/header.ejs') %>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs overlay">
+      <div class="container">
+        <div class="bread-inner">
+          <div class="row">
+            <div class="col-12">
+              <h2>Register</h2>
+              <ul class="bread-list">
+                <li><a href="index.html">Home</a></li>
+                <li><i class="icofont-simple-right"></i></li>
+                <li class="active">Register</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Start Register -->
+    <section class="contact-us section">
+      <div class="container">
+        <div class="inner">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="contact-us-form">
+                <h2>Join Us Today</h2>
+                <p></p>
+                <!-- Form -->
+                <form class="form" method="post" action="mail/mail.php">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="firstName"
+                          placeholder="First Name"
+                          required=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="lastName"
+                          placeholder="Last Name"
+                          required=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="middleName"
+                          placeholder="Middle Name"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="hospitalName"
+                          placeholder="Hospital Name"
+                          required=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Email"
+                          required=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="phone"
+                          placeholder="Phone"
+                          required=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <input
+                          type="password"
+                          name="password"
+                          placeholder="Password"
+                          required=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="specialization"
+                          placeholder="Specialization (comma-separated)"
+                          required=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group login-btn">
+                        <button class="btn" type="submit">Register</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>                
+                <!--/ End Form -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ End Register -->
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

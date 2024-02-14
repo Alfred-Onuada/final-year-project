@@ -15,132 +15,14 @@
     <!-- Title -->
     <title>BrainDetect - Quick and Efficient Tumor Detection System</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="img/favicon.png" />
-
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <!-- Nice Select CSS -->
-    <link rel="stylesheet" href="css/nice-select.css" />
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <!-- icofont CSS -->
-    <link rel="stylesheet" href="css/icofont.css" />
-    <!-- Slicknav -->
-    <link rel="stylesheet" href="css/slicknav.min.css" />
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="css/owl-carousel.css" />
-    <!-- Datepicker CSS -->
-    <link rel="stylesheet" href="css/datepicker.css" />
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="css/animate.min.css" />
-    <!-- Magnific Popup CSS -->
-    <link rel="stylesheet" href="css/magnific-popup.css" />
-
-    <!-- Medipro CSS -->
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <%- include('./partials/header-links.ejs') %>
   </head>
   <body>
     <!-- Preloader -->
-    <div class="preloader">
-      <div class="loader">
-        <div class="loader-outter"></div>
-        <div class="loader-inner"></div>
-
-        <div class="indicator">
-          <svg width="16px" height="12px">
-            <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
-            <polyline
-              id="front"
-              points="1 6 4 6 6 11 10 1 12 6 15 6"
-            ></polyline>
-          </svg>
-        </div>
-      </div>
-    </div>
+    <%- include('./partials/preloader.ejs') %>
     <!-- End Preloader -->
 
-    <!-- Header Area -->
-    <header class="header">
-      <!-- Topbar -->
-      <div class="topbar">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-md-5 col-12"></div>
-            <div class="col-lg-6 col-md-7 col-12">
-              <!-- Top Contact -->
-              <ul class="top-contact">
-                <li><i class="fa fa-phone"></i>(+234) 814 893 5061</li>
-                <li>
-                  <i class="fa fa-envelope"></i
-                  ><a href="mailto:support@yourmail.com"
-                    >support@braindetect.com</a
-                  >
-                </li>
-              </ul>
-              <!-- End Top Contact -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Topbar -->
-      <!-- Header Inner -->
-      <div class="header-inner">
-        <div class="container">
-          <div class="inner">
-            <div class="row">
-              <div class="col-lg-3 col-md-3 col-12">
-                <!-- Start Logo -->
-                <div class="logo">
-                  <a href="index.html"
-                    ><img
-                      style="height: 45px; max-width: 170px"
-                      src="img/logo.png"
-                      alt="#"
-                  /></a>
-                </div>
-                <!-- End Logo -->
-                <!-- Mobile Nav -->
-                <div class="mobile-nav"></div>
-                <!-- End Mobile Nav -->
-              </div>
-              <div class="col-lg-7 col-md-9 col-12">
-                <!-- Main Menu -->
-                <div class="main-menu">
-                  <nav class="navigation">
-                    <ul class="nav menu">
-                      <li class="active"><a href="#">Home</a></li>
-                      <li><a href="contact.html">Contact Us</a></li>
-                      <li><a href="#">Log In</a></li>
-
-                      <!-- When Logged In -->
-                      <li><a href="#">History</a></li>
-                      <li><a href="#">Make Predictions</a></li>
-                    </ul>
-                  </nav>
-                </div>
-                <!--/ End Main Menu -->
-              </div>
-              <div class="col-lg-2 col-12">
-                <div class="get-quote">
-                  <a href="#" class="btn">Register</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/ End Header Inner -->
-    </header>
-    <!-- End Header Area -->
+    <%- include('./partials/header.ejs') %>
 
     <!-- Slider Area -->
     <section class="slider">
@@ -167,7 +49,7 @@
                     healthcare.
                   </p>
                   <div class="button">
-                    <a href="#" class="btn">Get Started</a>
+                    <a href="/register" class="btn">Get Started</a>
                   </div>
                 </div>
               </div>
@@ -194,7 +76,7 @@
                     doctors in providing enhanced medical services.
                   </p>
                   <div class="button">
-                    <a href="#" class="btn">Get Started</a>
+                    <a href="/register" class="btn">Get Started</a>
                   </div>
                 </div>
               </div>
@@ -225,7 +107,7 @@
                     efficient and supportive healthcare environment.
                   </p>
                   <div class="button">
-                    <a href="#" class="btn">Get Started</a>
+                    <a href="/register" class="btn">Get Started</a>
                   </div>
                 </div>
               </div>
@@ -716,150 +598,6 @@
 
     <!-- /End Newsletter Area -->
 
-    <!-- Footer Area -->
-    <footer id="footer" class="footer">
-      <!-- Footer Top -->
-      <div class="footer-top">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-6 col-12">
-              <div class="single-footer">
-                <h2>About Us</h2>
-                <p>
-                  Welcome to BrainDetect, where cutting-edge technology meets
-                  compassionate healthcare. At BrainDetect, we are
-                  revolutionizing the field of medical diagnostics through the
-                  power of machine learning. Our platform empowers medical
-                  professionals by offering a seamless solution for the analysis
-                  of MRI scans, providing swift and accurate predictions on the
-                  presence of tumors. With a commitment to advancing patient
-                  care, our team of experts combines expertise in both medical
-                  and artificial intelligence domains to deliver a reliable and
-                  efficient service. Join us in our mission to enhance
-                  diagnostic precision and transform the landscape of medical
-                  imaging, as we strive towards a healthier and brighter future
-                </p>
-                <!-- Social -->
-                <ul class="social">
-                  <li>
-                    <a href="#"><i class="icofont-facebook"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="icofont-twitter"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="icofont-youtube"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="icofont-instagram"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="icofont-pinterest"></i></a>
-                  </li>
-                </ul>
-                <!-- End Social -->
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-              <div class="single-footer f-link">
-                <h2>Quick Links</h2>
-                <div class="row">
-                  <div class="col-lg-6 col-md-6 col-12">
-                    <ul>
-                      <li>
-                        <a href="#"
-                          ><i class="fa fa-caret-right" aria-hidden="true"></i
-                          >Home</a
-                        >
-                      </li>
-                      <li>
-                        <a href="contact.html"
-                          ><i class="fa fa-caret-right" aria-hidden="true"></i
-                          >Contact Us</a
-                        >
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="fa fa-caret-right" aria-hidden="true"></i
-                          >Login</a
-                        >
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="fa fa-caret-right" aria-hidden="true"></i
-                          >History</a
-                        >
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="fa fa-caret-right" aria-hidden="true"></i
-                          >Make Predictions</a
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/ End Footer Top -->
-      <!-- Copyright -->
-      <div class="copyright">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 col-md-12 col-12">
-              <div class="copyright-content">
-                <p>Made with 💖 in Babcock University</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/ End Copyright -->
-    </footer>
-    <!--/ End Footer Area -->
-
-    <!-- jquery Min JS -->
-    <script src="js/jquery.min.js"></script>
-    <!-- jquery Migrate JS -->
-    <script src="js/jquery-migrate-3.0.0.js"></script>
-    <!-- jquery Ui JS -->
-    <script src="js/jquery-ui.min.js"></script>
-    <!-- Easing JS -->
-    <script src="js/easing.js"></script>
-    <!-- Color JS -->
-    <script src="js/colors.js"></script>
-    <!-- Popper JS -->
-    <script src="js/popper.min.js"></script>
-    <!-- Bootstrap Datepicker JS -->
-    <script src="js/bootstrap-datepicker.js"></script>
-    <!-- Jquery Nav JS -->
-    <script src="js/jquery.nav.js"></script>
-    <!-- Slicknav JS -->
-    <script src="js/slicknav.min.js"></script>
-    <!-- ScrollUp JS -->
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <!-- Niceselect JS -->
-    <script src="js/niceselect.js"></script>
-    <!-- Tilt Jquery JS -->
-    <script src="js/tilt.jquery.min.js"></script>
-    <!-- Owl Carousel JS -->
-    <script src="js/owl-carousel.js"></script>
-    <!-- counterup JS -->
-    <script src="js/jquery.counterup.min.js"></script>
-    <!-- Steller JS -->
-    <script src="js/steller.js"></script>
-    <!-- Wow JS -->
-    <script src="js/wow.min.js"></script>
-    <!-- Magnific Popup JS -->
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <!-- Counter Up CDN JS -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <%- include('./partials/footer.ejs') %>
   </body>
 </html>

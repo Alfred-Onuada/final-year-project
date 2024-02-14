@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <!-- Meta Tags -->
+    <base href="/">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="Site keywords here" />
+    <meta name="description" content="" />
+    <meta name="copyright" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Title -->
+    <title>BrainDetect - Quick and Efficient Tumor Detection System</title>
+
+    <%- include('./../partials/header-links.ejs') %>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <%- include('./../partials/preloader.ejs') %>
+    <!-- End Preloader -->
+
+    <%- include('./../partials/header.ejs') %>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs overlay">
+      <div class="container">
+        <div class="bread-inner">
+          <div class="row">
+            <div class="col-12">
+              <h2>Doctors List</h2>
+              <ul class="bread-list">
+                <li><a href="index.html">Home</a></li>
+                <li><i class="icofont-simple-right"></i></li>
+                <li class="active">Doctors List</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <div class="container mt-5">
+      <h2>Doctor Details</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Hospital</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Specialization</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>Hospital A</td>
+            <td>john.doe@example.com</td>
+            <td>123-456-7890</td>
+            <td>Cardiology</td>
+            <td>
+              <div class="btn-group">
+                <button class="btn mr-2">Edit</button>
+                <button class="btn">Block</button>
+                <button class="btn ml-2">Delete</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jane Smith</td>
+            <td>Hospital B</td>
+            <td>jane.smith@example.com</td>
+            <td>987-654-3210</td>
+            <td>Neurology</td>
+            <td>
+              <div class="btn-group">
+                <button class="btn mr-2">Edit</button>
+                <button class="btn">Block</button>
+                <button class="btn ml-2">Delete</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Michael Johnson</td>
+            <td>Hospital C</td>
+            <td>michael.johnson@example.com</td>
+            <td>456-789-0123</td>
+            <td>Orthopedics</td>
+            <td>
+              <div class="btn-group">
+                <button class="btn mr-2">Edit</button>
+                <button class="btn">Block</button>
+                <button class="btn ml-2">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <%- include('./../partials/footer.ejs') %>
+  </body>
+</html>

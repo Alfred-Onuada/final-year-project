@@ -18,7 +18,11 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/youmustbeajoker', (req, res) => {
-  res.render('admin-login');
+  res.render('admin/login');
+})
+
+router.get('/youmustbeajoker/doctors', (req, res) => {
+  res.render('admin/doctors');
 })
 
 router.all('**', (req, res) => {

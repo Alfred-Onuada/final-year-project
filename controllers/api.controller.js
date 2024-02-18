@@ -2,7 +2,7 @@ import DOCTOR from "../models/doctor.model.js";
 import handle_error from "../utils/handle-error.js";
 import express from "express";
 import jwt from "jsonwebtoken";
-import {compareSync} from 'bcrypt';
+import {compareSync, hashSync} from 'bcrypt';
 
 /**
  * Creates a JWT
@@ -104,6 +104,50 @@ export async function get_profile(req, res) {
     }
 
     res.status(200).json({message: 'Success', data: userInfo});
+  } catch (error) {
+    handle_error(error, res);
+  }
+}
+
+/**
+ * Updates the profile
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+export async function update_profile(req, res) {
+  try {
+    const update = req.body;
+    const {userId} = req;
+
+    if (typeof update !== 'object') {
+      res.status(400).json({message: 'Invalid request'});
+      return;
+    }
+
+    const allowedFields = ['firstName', 'lastName', 'middleName', 'hospitalName', 'phone', 'password', 'specialization'];
+
+    const keys = Object.keys(update);
+
+    if (!keys.length) {
+      res.status(400).json({message: 'Update can not be empty'});
+      return;
+    }
+
+    const containsOnlyValidFields = keys.every(key => allowedFields.includes(key));
+
+    if (!containsOnlyValidFields) {
+      res.status(400).json({message: 'Please provide valid update information'});
+      return;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(update, 'password')) {
+      update.password = hashSync(update.password, 10);
+    }
+
+    await DOCTOR.updateOne({_id: userId}, update);
+
+    res.status(200).json({message: 'Update successful'});
   } catch (error) {
     handle_error(error, res);
   }

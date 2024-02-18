@@ -20,4 +20,7 @@ export default function handle_error(error, res) {
     res.status(400).json({ message: `${duplicateField} already exists` });
     return;
   }
+
+  console.error(error);
+  res.status(500).json({message: 'Internal Server Error'})
 };

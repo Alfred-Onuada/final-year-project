@@ -1,4 +1,5 @@
 import {Router} from 'express';
+import apiRoutes from "./api.routes.js";
 const router = Router();
 
 router.get('', (req, res) => {
@@ -24,6 +25,8 @@ router.get('/youmustbeajoker', (req, res) => {
 router.get('/youmustbeajoker/doctors', (req, res) => {
   res.render('admin/doctors');
 })
+
+router.use('/api', apiRoutes);
 
 router.all('**', (req, res) => {
   res.status(404).render('404');

@@ -85,3 +85,26 @@ export async function login(req, res) {
     handle_error(error, res);
   }
 }
+
+/**
+ * Retrieves profile information
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+export async function get_profile(req, res) {
+  try {
+    const {userId} = req;
+
+    const userInfo = await DOCTOR.findOne({_id: userId}, {__v: 0, password: 0});
+
+    if (!userInfo) {
+      res.status(404).json({message: 'User not found'});
+      return;
+    }
+
+    res.status(200).json({message: 'Success', data: userInfo});
+  } catch (error) {
+    handle_error(error, res);
+  }
+}

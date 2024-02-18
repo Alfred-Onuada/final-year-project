@@ -2,6 +2,7 @@ import DOCTOR from "../models/doctor.model.js";
 import handle_error from "../utils/handle-error.js";
 import express from "express";
 import jwt from "jsonwebtoken";
+import {compareSync} from 'bcrypt';
 
 /**
  * Creates a JWT
@@ -39,6 +40,43 @@ export async function register(req, res) {
     }
 
     const doctorInfo = await DOCTOR.create(data);
+
+    const accessToken = create_token(doctorInfo);
+
+    res.status(200).json({message: 'Registration Successful', data: accessToken});
+  } catch (error) {
+    handle_error(error, res);
+  }
+}
+
+/**
+ * Logs doctors in
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+export async function login(req, res) {
+  try {
+    const {email, password} = req.body;
+
+    if (!email || !password) {
+      res.status(400).json({message: 'Invalid credentials'});
+      return;
+    }
+
+    const doctorInfo = await DOCTOR.findOne({email});
+
+    if (!doctorInfo) {
+      res.status(400).json({message: 'Invalid credentials'});
+      return;
+    }
+
+    const passwordMatch = compareSync(password, doctorInfo.password);
+
+    if (!passwordMatch) {
+      res.status(400).json({message: 'Invalid credentials'});
+      return;
+    }
 
     const accessToken = create_token(doctorInfo);
 

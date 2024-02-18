@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
-  register
+  register,
+  login
 } from "./../controllers/api.controller.js";
 const router = Router();
 
@@ -8,7 +9,7 @@ router.get('/profile');
 
 router.get('/admin/login');
 
-router.post('/login');
+router.post('/login', login);
 
 router.post('/register', register);
 

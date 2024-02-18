@@ -61,57 +61,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>John Doe</td>
-            <td>Hospital A</td>
-            <td>john.doe@example.com</td>
-            <td>123-456-7890</td>
-            <td>Maintainer</td>
-            <td>Cardiology</td>
-            <td>23rd December 2024</td>
-            <td>
-              <div class="btn-group">
-                <button class="btn mr-2">Edit</button>
-                <button class="btn">Block</button>
-                <button class="btn ml-2">Delete</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>John Doe</td>
-            <td>Hospital A</td>
-            <td>john.doe@example.com</td>
-            <td>123-456-7890</td>
-            <td>Maintainer</td>
-            <td>Cardiology</td>
-            <td>23rd December 2024</td>
-            <td>
-              <div class="btn-group">
-                <button class="btn mr-2">Edit</button>
-                <button class="btn">Block</button>
-                <button class="btn ml-2">Delete</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>John Doe</td>
-            <td>Hospital A</td>
-            <td>john.doe@example.com</td>
-            <td>123-456-7890</td>
-            <td>Maintainer</td>
-            <td>Cardiology</td>
-            <td>23rd December 2024</td>
-            <td>
-              <div class="btn-group">
-                <button class="btn mr-2">Edit</button>
-                <button class="btn">Block</button>
-                <button class="btn ml-2">Delete</button>
-              </div>
-            </td>
-          </tr>
+          <% doctors.forEach((doctor, idx) => { %>
+            <tr>
+              <td><%= idx + 1 %></td>
+              <td><%= doctor.firstName + doctor.middleName + doctor.lastName %></td>
+              <td><%= doctor.hospitalName %></td>
+              <td><%= doctor.email %></td>
+              <td><%= doctor.phone %></td>
+              <td><%= doctor.role %></td>
+              <td><%= doctor.specialization %></td>
+              <td><%= (new Date(doctor.createdAt)).toISOString() %></td>
+              <td>
+                <div class="btn-group">
+                  <button class="btn mr-2">Edit</button>
+                  <button class="btn">Block</button>
+                  <button class="btn ml-2">Delete</button>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
         </tbody>
       </table>
     </div>

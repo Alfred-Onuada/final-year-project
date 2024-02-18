@@ -16,9 +16,9 @@ router.post('/login', login);
 
 router.post('/register', register);
 
-router.post('/admin/register', is_admin, register_an_admin);
+router.post('/youmustbeajoker/register', is_admin, register_an_admin);
 
-router.post('/admin/login', admin_login);
+router.post('/youmustbeajoker/login', admin_login);
 
 router.patch('/profile', is_logged_in, update_profile);
 

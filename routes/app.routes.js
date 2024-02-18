@@ -1,5 +1,7 @@
 import {Router} from 'express';
 import apiRoutes from "./api.routes.js";
+import { is_admin } from '../middlewares/auth.middleware.js';
+import DOCTOR from '../models/doctor.model.js';
 const router = Router();
 
 router.get('', (req, res) => {
@@ -22,7 +24,10 @@ router.get('/youmustbeajoker', (req, res) => {
   res.render('admin/login');
 })
 
-router.get('/youmustbeajoker/doctors', (req, res) => {
+router.get('/youmustbeajoker/doctors', is_admin,  async (req, res) => {
+  const doctors = await DOCTOR.find({}, {password: 0, __v: 0})
+  
+  res.locals.doctors = doctors;
   res.render('admin/doctors');
 })
 

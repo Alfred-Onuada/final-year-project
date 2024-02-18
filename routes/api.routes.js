@@ -3,9 +3,11 @@ import {
   register,
   login,
   get_profile,
-  update_profile
+  update_profile,
+  admin_login,
+  register_an_admin
 } from "./../controllers/api.controller.js";
-import { is_logged_in } from "../middlewares/auth.middleware.js";
+import { is_admin, is_logged_in } from "../middlewares/auth.middleware.js";
 const router = Router();
 
 router.get('/profile', is_logged_in, get_profile);
@@ -14,7 +16,9 @@ router.post('/login', login);
 
 router.post('/register', register);
 
-router.post('/admin/login');
+router.post('/admin/register', is_admin, register_an_admin);
+
+router.post('/admin/login', admin_login);
 
 router.patch('/profile', is_logged_in, update_profile);
 

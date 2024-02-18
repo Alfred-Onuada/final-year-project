@@ -21,3 +21,22 @@ export function is_logged_in(req, res, next) {
     res.status(401).json({message: 'Access Denied'});
   }
 }
+
+export function is_admin(req, res, next) {
+  try {
+    const token = req.headers['authorization'].split(' ')[1];
+
+    const payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    req.userId = payload._id;
+
+    if (payload.role !== 'admin') {
+      res.status(401).json({message: 'Access Denied'});
+      return;
+    }
+    
+    next();
+  } catch (error) {
+    res.status(401).json({message: 'Access Denied'});
+  }
+}

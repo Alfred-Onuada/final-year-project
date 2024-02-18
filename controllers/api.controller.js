@@ -1,4 +1,5 @@
 import DOCTOR from "../models/doctor.model.js";
+import ADMIN from "../models/admin.model.js";
 import handle_error from "../utils/handle-error.js";
 import express from "express";
 import jwt from "jsonwebtoken";
@@ -9,10 +10,10 @@ import {compareSync, hashSync} from 'bcrypt';
  * @param {InstanceType<typeof DOCTOR>} info
  * @returns {string}
  */
-function create_token(info) {
+function create_token(info, role) {
   const token = jwt.sign(
     {
-      role: info.role,
+      role: role ? role : info.role,
       _id: info._id
     },
     process.env.ACCESS_TOKEN_SECRET,
@@ -22,6 +23,29 @@ function create_token(info) {
   )
 
   return token;
+}
+
+/**
+ * Registers an ADMIN
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+export async function register_an_admin(req, res) {
+  try {
+    const data = req.body;
+
+    if (typeof data !== 'object') {
+      res.status(400).json({message: 'Invalid request'});
+      return;
+    }
+
+    await ADMIN.create(data);
+
+    res.status(200).json({message: 'Admin added successfully'});
+  } catch (error) {
+    handle_error(error, res);
+  }
 }
 
 /**
@@ -79,6 +103,43 @@ export async function login(req, res) {
     }
 
     const accessToken = create_token(doctorInfo);
+
+    res.status(200).json({message: 'Registration Successful', data: accessToken});
+  } catch (error) {
+    handle_error(error, res);
+  }
+}
+
+/**
+ * Logs Admin in
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns 
+ */
+export async function admin_login(req, res) {
+  try {
+    const {email, password} = req.body;
+
+    if (!email || !password) {
+      res.status(400).json({message: 'Invalid credentials'});
+      return;
+    }
+
+    const adminInfo = await ADMIN.findOne({email});
+
+    if (!adminInfo) {
+      res.status(400).json({message: 'Invalid credentials'});
+      return;
+    }
+
+    const passwordMatch = compareSync(password, adminInfo.password);
+
+    if (!passwordMatch) {
+      res.status(400).json({message: 'Invalid credentials'});
+      return;
+    }
+
+    const accessToken = create_token(adminInfo, 'admin');
 
     res.status(200).json({message: 'Registration Successful', data: accessToken});
   } catch (error) {

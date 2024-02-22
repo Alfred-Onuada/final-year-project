@@ -3,12 +3,15 @@ config();
 import express from 'express';
 import appRoutes from './routes/app.routes.js';
 import mongoose from 'mongoose';
+import { check_auth_status } from './middlewares/auth.middleware.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('assets'));
 app.use(express.json());
+app.use(cookieParser());
 
 const PORT = process.env.PORT || 3024;
 
@@ -18,7 +21,7 @@ async function main() {
     mongoose.connect(process.env.DB_URI);
     console.log('Connected to DB');
 
-    app.use('', appRoutes);
+    app.use('', check_auth_status, appRoutes);
 
     app.listen(PORT, () => {
       console.log(`Server is listening on port ${PORT}`);

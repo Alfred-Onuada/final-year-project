@@ -7,6 +7,26 @@ import jwt from 'jsonwebtoken';
  * @param {express.Response} res 
  * @param {express.NextFunction} next 
  */
+export function check_auth_status(req, res, next) {
+  try {
+    const token = req.cookies['accessToken'];
+
+    const payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    req.role = payload.role;
+
+    next();
+  } catch (error) {
+    next();
+  }
+}
+
+/**
+ * Checks auth status if user is logged in
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @param {express.NextFunction} next 
+ */
 export function is_logged_in(req, res, next) {
   try {
     const token = req.headers['authorization'].split(' ')[1];

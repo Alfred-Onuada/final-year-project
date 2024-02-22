@@ -51,9 +51,9 @@
             <div class="col-lg-12">
               <div class="contact-us-form">
                 <h2>Log In</h2>
-                <p></p>
+                <div id="failure-container" class="alert alert-danger capitalize hide" role="alert"></div>
                 <!-- Form -->
-                <form class="form" method="post" action="mail/mail.php">
+                <form class="form" onsubmit="return login()">
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">

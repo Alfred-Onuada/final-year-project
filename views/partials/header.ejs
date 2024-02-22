@@ -42,27 +42,34 @@
             <div class="mobile-nav"></div>
             <!-- End Mobile Nav -->
           </div>
-          <div class="col-lg-7 col-md-9 col-12">
+          <div class="col-lg-9 col-md-9 col-12 header-flex">
             <!-- Main Menu -->
             <div class="main-menu">
               <nav class="navigation">
                 <ul class="nav menu">
                   <li class="nav-links"><a href="/">Home</a></li>
+                  <li class="nav-links"><a href="/#about-us">About Us</a></li>
                   <li class="nav-links"><a href="/contact">Contact Us</a></li>
+                  <% if (typeof role === 'undefined') { %>
                   <li class="nav-links"><a href="/login">Log In</a></li>
+                  <% } %>
 
                   <!-- When Logged In -->
+                  <% if (typeof role !== 'undefined') { %>
+                    <li class="nav-links"><a href="/make-predictions">Make Predictions</a></li>
                   <li class="nav-links"><a href="/history">History</a></li>
-                  <li class="nav-links"><a href="/make-predictions">Make Predictions</a></li>
+                  <li class="nav-links"><a href="/profile">My Profile</a></li>
+                  <li class="nav-links"><a href="/log-out">Log Out</a></li>
+                  <% } %>
                 </ul>
               </nav>
             </div>
             <!--/ End Main Menu -->
-          </div>
-          <div class="col-lg-2 col-12">
-            <div class="get-quote">
-              <a href="/register" class="btn">Register</a>
-            </div>
+            <% if (typeof role === 'undefined') { %>
+              <div class="get-quote">
+                <a href="/register" class="btn">Register</a>
+              </div>
+            <% } %>
           </div>
         </div>
       </div>

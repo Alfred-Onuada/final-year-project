@@ -51,7 +51,7 @@ const doctorSchema = new mongoose.Schema({
     lowercase: true,
     trim: true,
     enum: {
-      values: ['regular', 'raintainer'],
+      values: ['regular', 'maintainer'],
       message: 'Please specify a valid role value',
     }
   },

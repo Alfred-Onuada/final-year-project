@@ -67,7 +67,9 @@ export async function register(req, res) {
 
     const accessToken = create_token(doctorInfo);
 
-    res.status(200).json({message: 'Registration Successful', data: accessToken});
+    res.cookie('accessToken', accessToken, {maxAge: 30*24*60*60*1000, httpOnly: true});
+
+    res.status(200).json({message: 'Registration Successful'});
   } catch (error) {
     handle_error(error, res);
   }
@@ -104,7 +106,9 @@ export async function login(req, res) {
 
     const accessToken = create_token(doctorInfo);
 
-    res.status(200).json({message: 'Registration Successful', data: accessToken});
+    res.cookie('accessToken', accessToken, {maxAge: 30*24*60*60*1000, httpOnly: true});
+
+    res.status(200).json({message: 'Registration Successful'});
   } catch (error) {
     handle_error(error, res);
   }
@@ -141,7 +145,9 @@ export async function admin_login(req, res) {
 
     const accessToken = create_token(adminInfo, 'admin');
 
-    res.status(200).json({message: 'Registration Successful', data: accessToken});
+    res.cookie('adminAccessToken', accessToken, {maxAge: 30*24*60*60*1000, httpOnly: true});
+
+    res.status(200).json({message: 'Registration Successful'});
   } catch (error) {
     handle_error(error, res);
   }

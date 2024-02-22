@@ -36,7 +36,38 @@ function register() {
       return resp.json();
     })
     .then(data => {
-      localStorage.setItem('accessToken', data.data);
+      location.assign('/make-predictions');
+    })
+    .catch(err => {
+      showError(err.message);
+    })
+
+  return false;
+}
+
+function login() {
+  const fields = ['email', 'password'];
+
+  const payload = {};
+  fields.forEach(field => {
+    payload[field] = document.querySelector(`input[name='${field}']`).value.toLowerCase();
+  })
+
+  fetch('/api/login', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(async resp => {
+      if (!resp.ok) {
+        const errData = await resp.json();
+        throw errData;
+      }
+      return resp.json();
+    })
+    .then(data => {
       location.assign('/make-predictions');
     })
     .catch(err => {

@@ -24,6 +24,11 @@ router.get('/login', (req, res) => {
   res.render('login');
 })
 
+router.get('/make-prediction', (req, res) => {
+  res.locals.role = req.role;
+  res.render('make-prediction');
+});
+
 router.get('/youmustbeajoker', (req, res) => {
   res.locals.role = req.role;
   res.render('admin/login');

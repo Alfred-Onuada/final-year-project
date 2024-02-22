@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="Site keywords here" />
+    <meta name="description" content="" />
+    <meta name="copyright" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Title -->
+    <title>BrainDetect - Quick and Efficient Tumor Detection System</title>
+
+    <%- include('./partials/header-links.ejs') %>
+
+    <style>
+      .metrics-label {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .metrics {
+        display: flex;
+        justify-content: space-between;
+        margin: 15px 0px;
+      }
+      .metrics .title {
+        font-size: 16px;
+        font-weight: 200;
+      }
+      .metrics .score {
+        font-size: 16px;
+        font-weight: 300;
+      }
+      .predict-btn {
+        width: 100%;
+        margin: 20px 0px;
+      }
+      .image-upload-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 350px;
+        border: 3px dashed whitesmoke;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .drop-image-label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      .alt-label {
+        font-size: 14px;
+        font-weight: 200;
+        margin-bottom: 30px;
+      }
+      .upload-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .under-text {
+        font-size: 16px;
+        font-weight: normal;
+        margin: 15px 0px;
+        text-align: center;
+      }
+      .top-text {
+        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
+      }
+      .tumor-container {
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <%- include('./partials/preloader.ejs') %>
+    <!-- End Preloader -->
+
+    <%- include('./partials/header.ejs') %>
+
+    <div class="container tumor-container">
+      <h1 class="top-text">Brain Tumor Prediction</h1>
+      <h4 class="under-text">Upload MRI images for brain tumor prediction</h4>
+
+      <h4 class="upload-title">Upload Image</h4>
+      <div class="image-upload-container">
+        <div>
+          <h4 class="drop-image-label">Drop image here</h4>
+          <h6 class="alt-label">Alternatively, click to select an image from your device</h6>
+          <label for="file-upload" class="custom-file-upload btn">
+            Browse Files
+          </label>
+          <input id="file-upload" type="file" name="tumor-image" style="display: none;">
+        </div>
+      </div>
+      <button class="btn predict-btn">Predict</button>
+
+      <h4 class="metrics-label">Model Metrics</h4>
+      <div class="metrics">
+        <h5 class="title">Accuracy</h5>
+        <h5 class="score"><b>85%</b></h5>
+      </div>
+      <div class="metrics">
+        <h5 class="title">Precision</h5>
+        <h5 class="score"><b>95%</b></h5>
+      </div>
+      <div class="metrics">
+        <h5 class="title">Recall</h5>
+        <h5 class="score"><b>93.5%</b></h5>
+      </div>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

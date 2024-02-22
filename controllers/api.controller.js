@@ -1,5 +1,6 @@
 import DOCTOR from "../models/doctor.model.js";
 import ADMIN from "../models/admin.model.js";
+import MESSAGE from "../models/message.model.js";
 import handle_error from "../utils/handle-error.js";
 import express from "express";
 import jwt from "jsonwebtoken";
@@ -215,6 +216,23 @@ export async function update_profile(req, res) {
     await DOCTOR.updateOne({_id: userId}, update);
 
     res.status(200).json({message: 'Update successful'});
+  } catch (error) {
+    handle_error(error, res);
+  }
+}
+
+export async function store_contact_message(req, res) {
+  try {
+    const data = req.body;
+
+    if (typeof data !== 'object') {
+      res.status(400).json({message: 'Invalid request'});
+      return;
+    }
+
+    await MESSAGE.create(data);
+
+    res.status(200).json({message: 'Success'});
   } catch (error) {
     handle_error(error, res);
   }

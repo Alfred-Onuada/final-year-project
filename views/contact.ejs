@@ -58,11 +58,13 @@
             <div class="col-lg-6">
               <div class="contact-us-form">
                 <h2>Contact With Us</h2>
-                <p>
+                <p style="margin-bottom: 0px !important;">
                   If you have any questions please fell free to contact with us.
                 </p>
+                <div id="success-container" class="alert alert-success capitalize hide" role="alert"></div>
+                <div id="failure-container" class="alert alert-danger capitalize hide" role="alert"></div>
                 <!-- Form -->
-                <form class="form" method="post" action="mail/mail.php">
+                <form class="form" onsubmit="return contact()">
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">

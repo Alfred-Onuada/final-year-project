@@ -11,6 +11,19 @@ function showError(msg) {
   }, 3000)
 }
 
+function showSuccess(msg) {
+  const successDiv = document.getElementById('success-container');
+
+  successDiv.scrollIntoView();
+  successDiv.classList.remove('hide');
+  successDiv.textContent = msg;
+
+  setTimeout(() => {
+    successDiv.textContent = '';
+    successDiv.classList.add('hide');
+  }, 3000)
+}
+
 function register() {
   const fields = ['firstName', 'lastName', 'middleName', 'hospitalName', 'email', 'phone', 'password', 'specialization'];
 
@@ -69,6 +82,40 @@ function login() {
     })
     .then(data => {
       location.assign('/make-predictions');
+    })
+    .catch(err => {
+      showError(err.message);
+    })
+
+  return false;
+}
+
+function contact() {
+  const fields = ['name', 'email', 'phone', 'subject'];
+
+  const payload = {};
+  fields.forEach(field => {
+    payload[field] = document.querySelector(`input[name='${field}']`).value.toLowerCase();
+  })
+
+  payload['message'] = document.querySelector(`textarea[name='message']`).value;
+
+  fetch('/api/store-contact-messages', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(async resp => {
+      if (!resp.ok) {
+        const errData = await resp.json();
+        throw errData;
+      }
+      return resp.json();
+    })
+    .then(data => {
+      showSuccess('Message Receieved Successfully');
     })
     .catch(err => {
       showError(err.message);

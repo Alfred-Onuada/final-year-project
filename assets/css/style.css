@@ -4170,3 +4170,11 @@ body{
 /*=========================
 	End Footer CSS
 ===========================*/
+
+.hide {
+	display: none !important;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}

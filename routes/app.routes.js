@@ -29,6 +29,11 @@ router.get('/make-prediction', (req, res) => {
   res.render('make-prediction');
 });
 
+router.get('/history', (req, res) => {
+  res.locals.role = req.role;
+  res.render('history');
+});
+
 router.get('/youmustbeajoker', (req, res) => {
   res.locals.role = req.role;
   res.render('admin/login');

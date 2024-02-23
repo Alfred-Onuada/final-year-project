@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="Site keywords here" />
+    <meta name="description" content="" />
+    <meta name="copyright" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Title -->
+    <title>BrainDetect - Quick and Efficient Tumor Detection System</title>
+
+    <%- include('./partials/header-links.ejs') %>
+
+    <style>
+      .history-container {
+        margin-top: 30px;
+      }
+      .title {
+        font-size: 28px;
+        margin-bottom: 15px;
+        font-weight: bolder;
+      }
+      .filters .btn {
+        padding: 10px 25px;
+      }
+      .filters {
+        margin: 15px 0px;
+      }
+      .prediction-image {
+        height: 50px;
+        width: 50px;
+      }
+      td {
+        vertical-align: middle !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <%- include('./partials/preloader.ejs') %>
+    <!-- End Preloader -->
+
+    <%- include('./partials/header.ejs') %>
+
+    <div class="container history-container">
+      <h1 class="title">Prediction History</h1>
+      <div class="filters">
+        <button class="btn">All</button>
+        <button class="btn">Cancerous</button>
+        <button class="btn">Non-cancerous</button>
+        <button class="btn">Inconclusive</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <td>Image</td>
+            <td>Diagnosis</td>
+            <td>Confidence</td>
+            <td>Date</td>
+          </thead>
+          <tr>
+            <td>
+              <img class="prediction-image" src="img/author1.jpg" alt="A picture uploaded on 01/01/2023">
+            </td>
+            <td>Cancerous</td>
+            <td>92%</td>
+            <td>01/01/2023</td>
+          </tr>
+          <tr>
+            <td>
+              <img class="prediction-image" src="img/author1.jpg" alt="A picture uploaded on 01/01/2023">
+            </td>
+            <td>Cancerous</td>
+            <td>92%</td>
+            <td>01/01/2023</td>
+          </tr>
+          <tr>
+            <td>
+              <img class="prediction-image" src="img/author1.jpg" alt="A picture uploaded on 01/01/2023">
+            </td>
+            <td>Cancerous</td>
+            <td>92%</td>
+            <td>01/01/2023</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

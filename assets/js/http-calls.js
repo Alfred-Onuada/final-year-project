@@ -123,3 +123,77 @@ function contact() {
 
   return false;
 }
+
+function editProfile() {
+  const editBtn = document.getElementById('edit-profile');
+  const saveChanges = document.getElementById('save-changes');
+
+  editBtn.classList.add('hide');
+  saveChanges.classList.remove('hide');
+
+  // make the content editable
+  const elementsToMakeEditable = document.querySelectorAll('.profile-data-value');
+
+  elementsToMakeEditable.forEach((elem, index) => {
+    elem.setAttribute('contenteditable', true);
+    // Set focus on the first editable element
+    if (index === 0) {
+      elem.focus();
+      // Ensure cursor is at the start
+      const range = document.createRange();
+      range.selectNodeContents(elem);
+      range.collapse(true);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  });
+}
+
+function saveProfileChanges() {
+  const editBtn = document.getElementById('edit-profile');
+  const saveChanges = document.getElementById('save-changes');
+
+  saveChanges.textContent = "Saving...";
+  saveChanges.setAttribute('disabled', true);
+
+  // remove the content editable
+  const elementsToRemoveEditable = document.querySelectorAll('.profile-data-value');
+  const payload = {};
+
+  elementsToRemoveEditable.forEach((elem, index) => {
+    elem.removeAttribute('contenteditable');
+
+    payload[elem.dataset.name] = elem.textContent;
+  });
+
+  payload['specialization'] = payload['specialization'].split(',').map(specialization => specialization.trim());
+
+  fetch('/api/profile', {
+    method: 'PATCH',
+    body: JSON.stringify(payload),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(async resp => {
+      if (!resp.ok) {
+        const errData = await resp.json();
+        throw errData;
+      }
+      return resp.json();
+    })
+    .then(data => {
+      showSuccess('Profile Updated Successfully');
+    })
+    .catch(err => {
+      showError(err.message);
+    })
+    .finally(() => {
+      editBtn.classList.remove('hide');
+      saveChanges.classList.add('hide');
+
+      saveChanges.textContent = "Save Changes";
+      saveChanges.removeAttribute('disabled');
+    })
+}

@@ -155,29 +155,6 @@ export async function admin_login(req, res) {
 }
 
 /**
- * Retrieves profile information
- * @param {express.Request} req 
- * @param {express.Response} res 
- * @returns 
- */
-export async function get_profile(req, res) {
-  try {
-    const {userId} = req;
-
-    const userInfo = await DOCTOR.findOne({_id: userId}, {__v: 0, password: 0});
-
-    if (!userInfo) {
-      res.status(404).json({message: 'User not found'});
-      return;
-    }
-
-    res.status(200).json({message: 'Success', data: userInfo});
-  } catch (error) {
-    handle_error(error, res);
-  }
-}
-
-/**
  * Updates the profile
  * @param {express.Request} req 
  * @param {express.Response} res 
@@ -193,7 +170,7 @@ export async function update_profile(req, res) {
       return;
     }
 
-    const allowedFields = ['firstName', 'lastName', 'middleName', 'hospitalName', 'phone', 'password', 'specialization'];
+    const allowedFields = ['firstName', 'lastName', 'middleName', 'hospitalName', 'email', 'phone', 'password', 'specialization'];
 
     const keys = Object.keys(update);
 
@@ -211,6 +188,15 @@ export async function update_profile(req, res) {
 
     if (Object.prototype.hasOwnProperty.call(update, 'password')) {
       update.password = hashSync(update.password, 10);
+    }
+
+    if (Object.prototype.hasOwnProperty.call(update, 'email')) {
+      const emailExists = await DOCTOR.find({email: update.email});
+
+      if (emailExists.length !== 0) {
+        res.status(400).json({message: 'Email is already in use'});
+        return;
+      }
     }
 
     await DOCTOR.updateOne({_id: userId}, update);

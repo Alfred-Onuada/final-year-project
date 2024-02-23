@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import apiRoutes from "./api.routes.js";
-import { is_admin } from '../middlewares/auth.middleware.js';
+import { is_admin, is_logged_in } from '../middlewares/auth.middleware.js';
 import DOCTOR from '../models/doctor.model.js';
 const router = Router();
 
@@ -24,18 +24,28 @@ router.get('/login', (req, res) => {
   res.render('login');
 })
 
-router.get('/make-prediction', (req, res) => {
+router.get('/make-prediction', is_logged_in, (req, res) => {
   res.locals.role = req.role;
   res.render('make-prediction');
 });
 
-router.get('/history', (req, res) => {
+router.get('/history', is_logged_in, (req, res) => {
   res.locals.role = req.role;
   res.render('history');
 });
 
-router.get('/profile', (req, res) => {
+router.get('/profile', is_logged_in, async (req, res) => {
+  const {userId} = req;
+
+  const userInfo = await DOCTOR.findOne({_id: userId}, {__v: 0, password: 0});
+
+  if (!userInfo) {
+    res.redirect('/log-out');
+    return;
+  }
+
   res.locals.role = req.role;
+  res.locals.profile = userInfo;
   res.render('profile');
 });
 

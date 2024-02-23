@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="Site keywords here" />
+    <meta name="description" content="" />
+    <meta name="copyright" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Title -->
+    <title>BrainDetect - Quick and Efficient Tumor Detection System</title>
+
+    <%- include('./partials/header-links.ejs') %>
+
+    <style>
+      .title {
+        font-weight: bolder;
+        font-size: 28px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+      .sub-title {
+        font-weight: bold;
+        font-size: 20px;
+        margin: 10px 0px;
+      }
+      .dp {
+        height: 150px;
+        width: 150px;
+        object-fit: contain;
+      }
+      .dp-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .bio {
+        margin-left: 25px;
+      }
+      .full-name {
+        font-size: 18px;
+        font-weight: normal;
+      }
+      .sub-bio {
+        font-size: 15px;
+        font-weight: 200;
+        color: #4F7396;
+      }
+      .sub-bio-middle {
+        margin: 10px 0px;
+      }
+      .profile-data {
+        display: flex;
+      }
+      .profile-data div {
+        width: 50%;
+      }
+      .profile-data div h5:nth-child(1) {
+        color: #4F7396;
+        font-size: 15px;
+        font-weight: 200;
+      }
+      .profile-data div h5:nth-child(2) {
+        font-size: 15px;
+        font-weight: 200;
+      }
+      .edit-btn {
+        padding: 10px 15px;
+      }
+      .password-container {
+        display: flex;
+      }
+      .password-container div {
+        background-color: #E8EDF2;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-right: 20px;
+      }
+      .password-container {
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <%- include('./partials/preloader.ejs') %>
+    <!-- End Preloader -->
+
+    <%- include('./partials/header.ejs') %>
+
+    <div class="container">
+      <h1 class="title">Dr. Jane A. Williams</h1>
+      <div class="dp-container">
+        <img class="dp" src="img/author1.jpg" alt="Image of Dr Jane">
+        <div class="bio">
+          <h4 class="full-name">Jane Ahmed Foster</h4>
+          <h4 class="sub-bio sub-bio-middle">Cardiologist, San Francisco General Hospital</h4>
+          <h4 class="sub-bio">jane@gmail.com, +234-1234-87654</h4>
+        </div>
+      </div>
+      <h3 class="sub-title">Profile</h3>
+      <hr>
+      <div class="profile-data">
+        <div>
+          <h5>First Name</h5>
+          <h5>Jane</h5>
+        </div>
+        <div>
+          <h5>Middle Name</h5>
+          <h5>Ahmed</h5>
+        </div>
+      </div>
+      <hr>
+      <div class="profile-data">
+        <div>
+          <h5>Last Name</h5>
+          <h5>Foster</h5>
+        </div>
+        <div>
+          <h5>Hospital</h5>
+          <h5>San Francisco General Hospital</h5>
+        </div>
+      </div>
+      <hr>
+      <div class="profile-data">
+        <div>
+          <h5>Email</h5>
+          <h5>Jane@gmail.com</h5>
+        </div>
+        <div>
+          <h5>Phone</h5>
+          <h5>+234-1234-87654</h5>
+        </div>
+      </div>
+      <hr>
+      <div class="profile-data">
+        <div>
+          <h5>Role</h5>
+          <h5>Regular</h5>
+        </div>
+        <div>
+          <h5>Specialization</h5>
+          <h5>Cardiology</h5>
+        </div>
+      </div>
+      <br><br>
+      <button class="btn edit-btn">Edit Profile</button>
+      <br>
+      <h3 class="sub-title">Password</h3>
+      <div class="password-container">
+        <div>
+          <img src="img/lock.svg" alt="Lock Image">
+        </div>
+        <button class="btn edit-btn">Change Password</button>
+      </div>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

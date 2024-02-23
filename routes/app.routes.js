@@ -34,6 +34,11 @@ router.get('/history', (req, res) => {
   res.render('history');
 });
 
+router.get('/profile', (req, res) => {
+  res.locals.role = req.role;
+  res.render('profile');
+});
+
 router.get('/youmustbeajoker', (req, res) => {
   res.locals.role = req.role;
   res.render('admin/login');

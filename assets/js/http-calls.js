@@ -49,7 +49,7 @@ function register() {
       return resp.json();
     })
     .then(data => {
-      location.assign('/make-predictions');
+      location.assign('/make-prediction');
     })
     .catch(err => {
       showError(err.message);
@@ -81,7 +81,7 @@ function login() {
       return resp.json();
     })
     .then(data => {
-      location.assign('/make-predictions');
+      location.assign('/make-prediction');
     })
     .catch(err => {
       showError(err.message);

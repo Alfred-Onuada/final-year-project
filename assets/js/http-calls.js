@@ -197,3 +197,50 @@ function saveProfileChanges() {
       saveChanges.removeAttribute('disabled');
     })
 }
+
+function editPassword() {
+  const newPassContainer = document.getElementById('new-password-container');
+
+  newPassContainer.classList.remove('hide');
+}
+
+function savePassword() {
+  const newPassContainer = document.getElementById('new-password-container');
+  const savePassBtn = document.getElementById('save-pass-btn');
+
+  savePassBtn.textContent = 'Saving...';
+
+  const newPassword = document.getElementById('new-password');
+  const confirmPassword = document.getElementById('confirm-password');
+
+  if (newPassword.value !== confirmPassword.value) {
+    showError("Both passwords must match");
+    savePassBtn.textContent = 'Save Password';
+    return;
+  }
+
+  fetch('/api/profile', {
+    method: 'PATCH',
+    body: JSON.stringify({password: newPassword.value}),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(async resp => {
+      if (!resp.ok) {
+        const errData = await resp.json();
+        throw errData;
+      }
+      return resp.json();
+    })
+    .then(data => {
+      showSuccess('Password Updated Successfully');
+    })
+    .catch(err => {
+      showError(err.message);
+    })
+    .finally(() => {
+      newPassContainer.classList.add('hide');
+      savePassBtn.textContent = 'Save Password';
+    })
+}

@@ -85,11 +85,24 @@
         border-radius: 5px;
         margin-right: 20px;
       }
-      .password-container {
-        margin-bottom: 30px;
-      }
       .profile-data-value {
         text-transform: capitalize;
+      }
+      .new-password-container {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+      }
+      .new-password-container input {
+        width: 300px;
+        height: 50px;
+        padding: 0px 10px;
+      }
+      .new-password-container {
+        margin-top: 15px;
+      }
+      .confirm-pass {
+        margin: 15px 0px;
       }
     </style>
   </head>
@@ -100,7 +113,7 @@
 
     <%- include('./partials/header.ejs') %>
 
-    <div class="container">
+    <div class="container" style="margin-bottom: 30px;">
       <h1 class="title">Dr. <%= profile.firstName %><%= profile.middleName ? ' ' + profile.middleName.slice(0, 1) + '. ' : '' %><%= profile.lastName %></h1>
       <div class="dp-container">
         <img class="dp" src="img/author1.jpg" alt="Image of Dr Jane">
@@ -167,7 +180,12 @@
         <div>
           <img src="img/lock.svg" alt="Lock Image">
         </div>
-        <button class="btn edit-btn">Change Password</button>
+        <button class="btn edit-btn" onclick="editPassword()">Change Password</button>
+      </div>
+      <div id="new-password-container" class="new-password-container hide">
+        <input type="password" id="new-password" placeholder="Enter a new password">
+        <input class="confirm-pass" type="password" id="confirm-password" placeholder="Retype new password">
+        <button id="save-pass-btn" class="btn edit-btn" onclick="savePassword()">Save Password</button>
       </div>
     </div>
 

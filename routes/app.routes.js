@@ -2,6 +2,7 @@ import {Router} from 'express';
 import apiRoutes from "./api.routes.js";
 import { is_admin, is_logged_in } from '../middlewares/auth.middleware.js';
 import DOCTOR from '../models/doctor.model.js';
+import PREDICTION from '../models/predictions.model.js';
 const router = Router();
 
 router.get('', (req, res) => {
@@ -29,7 +30,12 @@ router.get('/make-prediction', is_logged_in, (req, res) => {
   res.render('make-prediction');
 });
 
-router.get('/history', is_logged_in, (req, res) => {
+router.get('/history', is_logged_in, async (req, res) => {
+  const {userId} = req;
+  const predictions = await PREDICTION.find({doctorId: userId})
+    .sort({createdAt: -1});
+  
+  res.locals.predictions = predictions;
   res.locals.role = req.role;
   res.render('history');
 });

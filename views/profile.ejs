@@ -13,7 +13,7 @@
     />
 
     <!-- Title -->
-    <title>BrainDetect - Quick and Efficient Tumor Detection System</title>
+    <title>BrainDetect - Quick and Efficient Malaria Detection System</title>
 
     <%- include('./partials/header-links.ejs') %>
 
@@ -104,6 +104,23 @@
       .confirm-pass {
         margin: 15px 0px;
       }
+      .profile-pic-container {
+        position: relative;
+      }
+      .profile-pic-container label{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 25px;
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
   </head>
   <body>
@@ -114,11 +131,18 @@
     <%- include('./partials/header.ejs') %>
 
     <div class="container" style="margin-bottom: 30px;">
-      <h1 class="title">Dr. <%= profile.firstName %><%= profile.middleName ? ' ' + profile.middleName.slice(0, 1) + '. ' : '' %><%= profile.lastName %></h1>
+      <h1 class="title">Dr. <%= profile.firstName %><%= profile.middleName ? ' ' + profile.middleName.slice(0, 1) + '. ' : ' ' %><%= profile.lastName %></h1>
       <div class="dp-container">
-        <img class="dp" src="img/author1.jpg" alt="Image of Dr Jane">
+        <div class="profile-pic-container">
+          <img id="profile-image-preview" class="dp" src="<%= profile.profileImage %>" alt="Image of Dr Jane">
+          <label for="profile-image">
+            <span class="fa fa-camera"></span>
+          </label>
+          <input type="file" id="profile-image" style="display: none;" accept="image/*"
+            onchange="handleProfileImageChange()">
+        </div>
         <div class="bio">
-          <h4 class="full-name"><%= profile.firstName %><%= profile.middleName ? ' ' + profile.middleName+ ' ' : '' %><%= profile.lastName %></h4>
+          <h4 class="full-name"><%= profile.firstName %><%= profile.middleName ? ' ' + profile.middleName+ ' ' : ' ' %><%= profile.lastName %></h4>
           <h4 class="sub-bio sub-bio-middle"><%= profile.specialization.join(', ') %>, <%= profile.hospitalName %></h4>
           <h4 class="sub-bio"><%= profile.email %>, <%= profile.phone %></h4>
         </div>

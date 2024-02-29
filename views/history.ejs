@@ -13,7 +13,7 @@
     />
 
     <!-- Title -->
-    <title>BrainDetect - Quick and Efficient Tumor Detection System</title>
+    <title>BrainDetect - Quick and Efficient Malaria Detection System</title>
 
     <%- include('./partials/header-links.ejs') %>
 
@@ -51,10 +51,11 @@
     <div class="container history-container">
       <h1 class="title">Prediction History</h1>
       <div class="filters">
-        <button class="btn">All</button>
-        <button class="btn">Cancerous</button>
-        <button class="btn">Non-cancerous</button>
-        <button class="btn">Inconclusive</button>
+        <button onclick="filter('all')" class="btn active">All</button>
+        <button onclick="filter('glioma')" class="btn">Glioma</button>
+        <button onclick="filter('meningioma')" class="btn">Meningioma</button>
+        <button onclick="filter('pituitary')" class="btn">Pituitary</button>
+        <button onclick="filter('non-cancerous')" class="btn">Non Cancerous</button>
       </div>
       <div class="table-responsive">
         <table class="table">
@@ -64,30 +65,16 @@
             <td>Confidence</td>
             <td>Date</td>
           </thead>
+          <% predictions.forEach(prediction => { %>
           <tr>
             <td>
-              <img class="prediction-image" src="img/author1.jpg" alt="A picture uploaded on 01/01/2023">
+              <img class="prediction-image" src="<%= prediction.imageUrl %>" alt="A picture uploaded on <%= prediction.createdAt %>">
             </td>
-            <td>Cancerous</td>
-            <td>92%</td>
-            <td>01/01/2023</td>
+            <td class="inference"><%= prediction.inference %></td>
+            <td><%= prediction.confidenceScore %></td>
+            <td><%= prediction.createdAt %></td>
           </tr>
-          <tr>
-            <td>
-              <img class="prediction-image" src="img/author1.jpg" alt="A picture uploaded on 01/01/2023">
-            </td>
-            <td>Cancerous</td>
-            <td>92%</td>
-            <td>01/01/2023</td>
-          </tr>
-          <tr>
-            <td>
-              <img class="prediction-image" src="img/author1.jpg" alt="A picture uploaded on 01/01/2023">
-            </td>
-            <td>Cancerous</td>
-            <td>92%</td>
-            <td>01/01/2023</td>
-          </tr>
+          <% }) %>
         </table>
       </div>
     </div>

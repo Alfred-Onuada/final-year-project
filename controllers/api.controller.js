@@ -1,6 +1,7 @@
 import DOCTOR from "../models/doctor.model.js";
 import ADMIN from "../models/admin.model.js";
 import MESSAGE from "../models/message.model.js";
+import PREDICTION from "../models/predictions.model.js"
 import handle_error from "../utils/handle-error.js";
 import express from "express";
 import jwt from "jsonwebtoken";
@@ -193,7 +194,7 @@ export async function update_profile(req, res) {
     if (Object.prototype.hasOwnProperty.call(update, 'email')) {
       const emailExists = await DOCTOR.find({email: update.email});
 
-      if (emailExists.length !== 0) {
+      if (emailExists.length !== 0 && emailExists[0]._id.equals(userId) === false) {
         res.status(400).json({message: 'Email is already in use'});
         return;
       }
@@ -220,6 +221,106 @@ export async function store_contact_message(req, res) {
 
     res.status(200).json({message: 'Success'});
   } catch (error) {
+    handle_error(error, res);
+  }
+}
+
+export async function update_profile_image(req, res) {
+  try {
+    const {userId} = req;
+    if (typeof req.files === 'undefined' || req.files === null) {
+      res.status(400).json({message: 'Please upload the required files'});
+      return;
+    }
+
+    // always going to be a single file
+    if (Array.isArray(req.files)) {
+      res.status(400).json({message: 'Please upload only one file'});
+      return;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(req.files, 'image') === false) {
+      res.status(400).json({
+        message:
+          'File processing failed, please ensure the file is uploaded with the correct field name',
+      });
+      return;
+    }
+
+    // Convert file data to Base64 string
+    const base64Data = req.files.image.data.toString('base64');
+    const imageUrl = `data:${req.files.image.mimetype};base64,${base64Data}`;
+
+    await DOCTOR.updateOne({_id: userId}, {profileImage: imageUrl});
+
+    res.status(200).json({message: 'Profile image updated successfully'});
+  } catch (error) {
+    handle_error(error, res);
+  }
+}
+
+export async function make_prediction(req, res) {
+  try {
+    const {userId} = req;
+    if (typeof req.files === 'undefined' || req.files === null) {
+      res.status(400).json({message: 'Please upload the required files'});
+      return;
+    }
+
+    // always going to be a single file
+    if (Array.isArray(req.files)) {
+      res.status(400).json({message: 'Please upload only one file'});
+      return;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(req.files, 'image') === false) {
+      res.status(400).json({
+        message:
+          'File processing failed, please ensure the file is uploaded with the correct field name',
+      });
+      return;
+    }
+
+    // Convert file data to Blob
+    const fileBlob = new Blob([req.files.image.data], { type: req.files.image.mimetype });
+
+    // Create FormData object to send the file
+    const formData = new FormData();
+    formData.append('image', fileBlob, req.files.image.name);
+
+    // upload to flask server
+    const resp = await fetch(process.env.PREDICTION_SERVER, {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await resp.json();
+
+    // extract inference
+    let inference = "";
+    let maxScore = -Infinity;
+    const categories = Object.keys(data.prediction)
+    categories.forEach(category => {
+      if (data.prediction[category] > maxScore) {
+        maxScore = data.prediction[category]
+        inference = category
+      }
+    })
+ 
+    // Convert file data to Base64 string
+    const base64Data = req.files.image.data.toString('base64');
+    const imageUrl = `data:${req.files.image.mimetype};base64,${base64Data}`;
+
+    // insert into the DB for predictions and return final results
+    await PREDICTION.create({
+      doctorId: userId,
+      confidenceScore: data.prediction[inference],
+      imageUrl,
+      inference, 
+    })
+
+    res.status(200).json({message: 'Success', data: {inference, confidenceScore: data.prediction[inference]}})
+} catch (error) {
     handle_error(error, res);
   }
 }

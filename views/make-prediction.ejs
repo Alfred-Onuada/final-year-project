@@ -45,7 +45,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 350px;
+        min-height: 350px;
         border: 3px dashed whitesmoke;
         border-radius: 10px;
         text-align: center;
@@ -80,6 +80,10 @@
         margin-top: 50px;
         margin-bottom: 50px;
       }
+      #preview-image {
+        width: 450px;
+        margin: 30px 0px;
+      }
     </style>
   </head>
   <body>
@@ -90,18 +94,22 @@
     <%- include('./partials/header.ejs') %>
 
     <div class="container tumor-container">
+      <div id="failure-container" class="alert-danger capitalize hide" role="alert"></div>
+      <div id="prediction-container" class="alert alert-primary hide" role="alert"></div>
       <h1 class="top-text">Brain Tumor Prediction</h1>
       <h4 class="under-text">Upload MRI images for brain tumor prediction</h4>
 
       <h4 class="upload-title">Upload Image</h4>
       <div class="image-upload-container">
+        <img src="" alt="Uploaded Image" class="hide" id="preview-image">
         <div>
           <h4 class="drop-image-label">Drop image here</h4>
           <h6 class="alt-label">Alternatively, click to select an image from your device</h6>
-          <label for="file-upload" class="custom-file-upload btn">
+          <label for="tumor-image" class="custom-file-upload btn">
             Browse Files
           </label>
-          <input id="file-upload" type="file" name="tumor-image" style="display: none;">
+          <input id="tumor-image" type="file" style="display: none;" accept="image/*"
+            onchange="handleImageUpload()">
         </div>
       </div>
       <button class="btn predict-btn">Predict</button>
@@ -109,15 +117,19 @@
       <h4 class="metrics-label">Model Metrics</h4>
       <div class="metrics">
         <h5 class="title">Accuracy</h5>
-        <h5 class="score"><b>85%</b></h5>
+        <h5 class="score"><b>99.1%</b></h5>
       </div>
       <div class="metrics">
         <h5 class="title">Precision</h5>
-        <h5 class="score"><b>95%</b></h5>
+        <h5 class="score"><b>98.2%</b></h5>
       </div>
       <div class="metrics">
         <h5 class="title">Recall</h5>
-        <h5 class="score"><b>93.5%</b></h5>
+        <h5 class="score"><b>98.2%</b></h5>
+      </div>
+      <div class="metrics">
+        <h5 class="title">Loss</h5>
+        <h5 class="score"><b>0.0290</b></h5>
       </div>
     </div>
 

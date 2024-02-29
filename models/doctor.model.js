@@ -4,6 +4,10 @@ import validator from "validator";
 const { isEmail, isMobilePhone } = validator;
 
 const doctorSchema = new mongoose.Schema({
+  profileImage: {
+    type: String,
+    default: 'img/default-avatar.jpeg'
+  },
   firstName: {
     type: String,
     required: [true, 'First name is required'],

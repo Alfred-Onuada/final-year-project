@@ -6,4 +6,4 @@
 **/ML/website-testing/
 **/ML/tumor-dataset
 **/ML/server/.venv/
-**/ML/
+**/ML/server/*.h5

@@ -11,7 +11,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Load the model
-multiclass_model = tf.keras.models.load_model('./../tumor-multiclass-model.h5')
+multiclass_model = tf.keras.models.load_model('./tumor-multiclass-model.h5')
 
 import cv2
 import numpy as np

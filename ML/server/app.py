@@ -51,15 +51,11 @@ def predict():
         prediction = multiclass_model.predict(image)
 
         # format response
-        response = {
-           'meningioma': None,
-           'glioma': None,
-           'pituitary': None
-        }
+        response = {}
+        classes = ['glioma', 'meningioma', 'pituitary']
 
-        keys = list(response.keys())
         for idx, val in enumerate(prediction[0]):
-            response[keys[idx]] = float(val)
+            response[classes[idx]] = float(val)
         
         # Return the prediction result
         return jsonify({"prediction": response})

@@ -50,7 +50,7 @@
                   <li class="nav-links"><a href="/">Home</a></li>
                   <li class="nav-links"><a href="/#about-us">About Us</a></li>
                   <li class="nav-links"><a href="/contact">Contact Us</a></li>
-                  <% if (typeof role === 'undefined') { %>
+                  <% if (typeof role === 'undefined' && typeof admin === 'undefined') { %>
                   <li class="nav-links"><a href="/login">Log In</a></li>
                   <% } %>
 
@@ -61,11 +61,16 @@
                   <li class="nav-links"><a href="/profile">My Profile</a></li>
                   <li class="nav-links"><a href="/log-out">Log Out</a></li>
                   <% } %>
+
+                  <% if (typeof admin !== 'undefined' && admin === true) { %>
+                    <li class="nav-links"><a href="/youmustbeajoker/create-admin">Create an Admin</a></li>
+                    <li class="nav-links"><a href="/log-out">Log Out</a></li>
+                  <% } %>
                 </ul>
               </nav>
             </div>
             <!--/ End Main Menu -->
-            <% if (typeof role === 'undefined') { %>
+            <% if (typeof role === 'undefined' && typeof admin === 'undefined') { %>
               <div class="get-quote">
                 <a href="/register" class="btn">Register</a>
               </div>

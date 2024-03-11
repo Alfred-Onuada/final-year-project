@@ -434,3 +434,41 @@ function adminLogin() {
 
   return false;
 }
+
+function registerAnAdmin() {
+  const fields = [
+    "fullName",
+    "email",
+    "password",
+  ];
+
+  const payload = {};
+  fields.forEach((field) => {
+    payload[field] = document
+      .querySelector(`input[name='${field}']`)
+      .value.toLowerCase();
+  });
+
+  fetch("/api/youmustbeajoker/register", {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(async (resp) => {
+      if (!resp.ok) {
+        const errData = await resp.json();
+        throw errData;
+      }
+      return resp.json();
+    })
+    .then((data) => {
+      showSuccess('Admin account created successfully');
+    })
+    .catch((err) => {
+      showError(err.message);
+    });
+
+  return false;
+}

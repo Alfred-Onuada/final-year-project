@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <!-- Meta Tags -->
+    <base href="/">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="Site keywords here" />
+    <meta name="description" content="" />
+    <meta name="copyright" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Title -->
+    <title>BrainDetect - Quick and Efficient Tumor Detection System</title>
+
+    <%- include('./../partials/header-links.ejs') %>
+
+    <style>
+      .title {
+        font-weight: bolder;
+        font-size: 28px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+      }
+      .sub-title {
+        font-weight: bold;
+        font-size: 20px;
+        margin: 10px 0px;
+      }
+      .dp {
+        height: 150px;
+        width: 150px;
+        object-fit: contain;
+      }
+      .dp-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .bio {
+        margin-left: 25px;
+      }
+      .full-name {
+        font-size: 18px;
+        font-weight: normal;
+        text-transform: capitalize;
+      }
+      .sub-bio {
+        font-size: 15px;
+        font-weight: 200;
+        color: #4F7396;
+      }
+      .sub-bio-middle {
+        margin: 10px 0px;
+        text-transform: capitalize;
+      }
+      .profile-data {
+        display: flex;
+      }
+      .profile-data div {
+        width: 50%;
+      }
+      .profile-data div h5:nth-child(1) {
+        color: #4F7396;
+        font-size: 15px;
+        font-weight: 200;
+      }
+      .profile-data div h5:nth-child(2) {
+        font-size: 15px;
+        font-weight: 200;
+        height: 25px;
+      }
+      .edit-btn {
+        padding: 10px 15px;
+      }
+      .password-container {
+        display: flex;
+      }
+      .password-container div {
+        background-color: #E8EDF2;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-right: 20px;
+      }
+      .profile-data-value {
+        text-transform: capitalize;
+      }
+      .new-password-container {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+      }
+      .new-password-container input {
+        width: 300px;
+        height: 50px;
+        padding: 0px 10px;
+      }
+      .new-password-container {
+        margin-top: 15px;
+      }
+      .confirm-pass {
+        margin: 15px 0px;
+      }
+      .profile-pic-container {
+        position: relative;
+      }
+      .profile-pic-container label{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 25px;
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <%- include('./../partials/preloader.ejs') %>
+    <!-- End Preloader -->
+
+    <%- include('./../partials/header.ejs') %>
+
+    <div class="container" style="margin-bottom: 30px;">
+      <h1 class="title">Dr. <%= doctorInfo.firstName %><%= doctorInfo.middleName ? ' ' + doctorInfo.middleName.slice(0, 1) + '. ' : ' ' %><%= doctorInfo.lastName %></h1>
+      <div class="dp-container">
+        <div class="profile-pic-container">
+          <img id="profile-image-preview" class="dp" src="<%= doctorInfo.profileImage %>" alt="Image of Dr Jane">
+        </div>
+        <div class="bio">
+          <h4 class="full-name"><%= doctorInfo.firstName %><%= doctorInfo.middleName ? ' ' + doctorInfo.middleName+ ' ' : ' ' %><%= doctorInfo.lastName %></h4>
+          <h4 class="sub-bio sub-bio-middle"><%= doctorInfo.specialization.join(', ') %>, <%= doctorInfo.hospitalName %></h4>
+          <h4 class="sub-bio"><%= doctorInfo.email %>, <%= doctorInfo.phone %></h4>
+        </div>
+      </div>
+      <h3 class="sub-title">Profile</h3>
+      <hr>
+      <div class="profile-data">
+        <div>
+          <h5>First Name</h5>
+          <h5 class="profile-data-value" data-name="firstName"><%= doctorInfo.firstName %></h5>
+        </div>
+        <div>
+          <h5>Middle Name</h5>
+          <h5 class="profile-data-value" data-name="middleName"><%= doctorInfo.middleName %></h5>
+        </div>
+      </div>
+      <hr>
+      <div class="profile-data">
+        <div>
+          <h5>Last Name</h5>
+          <h5 class="profile-data-value" data-name="lastName"><%= doctorInfo.lastName %></h5>
+        </div>
+        <div>
+          <h5>Hospital</h5>
+          <h5 class="profile-data-value" data-name="hospitalName"><%= doctorInfo.hospitalName %></h5>
+        </div>
+      </div>
+      <hr>
+      <div class="profile-data">
+        <div>
+          <h5>Email</h5>
+          <h5 class="profile-data-value" data-name="email" style="text-transform: lowercase;"><%= doctorInfo.email %></h5>
+        </div>
+        <div>
+          <h5>Phone</h5>
+          <h5 class="profile-data-value" data-name="phone"><%= doctorInfo.phone %></h5>
+        </div>
+      </div>
+      <hr>
+      <div class="profile-data">
+        <div>
+          <h5>Role</h5>
+          <h5><%= doctorInfo.role %></h5>
+        </div>
+        <div>
+          <h5>Specialization</h5>
+          <h5 class="profile-data-value" data-name="specialization"><%= doctorInfo.specialization.join(', ') %></h5>
+        </div>
+      </div>
+      <br>
+    </div>
+
+    <style>
+      .history-container {
+        margin-top: 30px;
+      }
+      .title {
+        font-size: 28px;
+        margin-bottom: 15px;
+        font-weight: bolder;
+      }
+      .filters .btn {
+        padding: 10px 25px;
+      }
+      .filters {
+        margin: 15px 0px;
+      }
+      .prediction-image {
+        height: 50px;
+        width: 50px;
+      }
+      td {
+        vertical-align: middle !important;
+      }
+    </style>
+
+    <div class="container history-container">
+      <h1 class="title">Prediction History</h1>
+      <div class="filters">
+        <button onclick="filter('all')" class="btn active">All</button>
+        <button onclick="filter('glioma')" class="btn">Glioma</button>
+        <button onclick="filter('meningioma')" class="btn">Meningioma</button>
+        <button onclick="filter('pituitary')" class="btn">Pituitary</button>
+        <button onclick="filter('non-cancerous')" class="btn">Non Cancerous</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <td>Image</td>
+            <td>Diagnosis</td>
+            <td>Confidence</td>
+            <td>Date</td>
+          </thead>
+          <% predictions.forEach(prediction => { %>
+          <tr>
+            <td>
+              <img class="prediction-image" src="<%= prediction.imageUrl %>" alt="A picture uploaded on <%= prediction.createdAt %>">
+            </td>
+            <td class="inference"><%= prediction.inference %></td>
+            <td><%= prediction.confidenceScore %></td>
+            <td><%= prediction.createdAt %></td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+    </div>
+
+    <%- include('./../partials/footer.ejs') %>
+  </body>
+</html>

@@ -57,14 +57,41 @@ router.get('/profile', is_logged_in, async (req, res) => {
 
 router.get('/youmustbeajoker', (req, res) => {
   res.locals.role = req.role;
+
+  if (req.role === 'admin') {
+    res.locals.admin = true;
+  }
+  
   res.render('admin/login');
+})
+
+router.get('/youmustbeajoker/create-admin', (req, res) => {
+  res.locals.admin = true;
+  res.locals.role = req.role;
+  res.render('admin/add-admin.ejs');
 })
 
 router.get('/youmustbeajoker/doctors', is_admin,  async (req, res) => {
   const doctors = await DOCTOR.find({}, {password: 0, __v: 0})
   
+  res.locals.admin = true;
   res.locals.doctors = doctors;
   res.render('admin/doctors');
+})
+
+router.get('/youmustbeajoker/doctor/:doctorId', is_admin,  async (req, res) => {
+  if (!req.params.doctorId) {
+    res.redirect('/404')
+    return;
+  }
+  const doctor = await DOCTOR.findOne({_id: req.params.doctorId}, {password: 0, __v: 0});
+  const predictions = await PREDICTION.find({doctorId: req.params.doctorId})
+    .sort({createdAt: -1});
+  
+  res.locals.admin = true;
+  res.locals.predictions = predictions;
+  res.locals.doctorInfo = doctor;
+  res.render('admin/doctor-profile');
 })
 
 router.get('/log-out', (req, res) => {
@@ -73,6 +100,11 @@ router.get('/log-out', (req, res) => {
 })
 
 router.use('/api', apiRoutes);
+
+router.all('/404', (req, res) => {
+  res.locals.role = req.role;
+  res.status(404).render('404');
+})
 
 router.all('**', (req, res) => {
   res.locals.role = req.role;

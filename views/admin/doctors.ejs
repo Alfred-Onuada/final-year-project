@@ -33,7 +33,7 @@
             <div class="col-12">
               <h2>Doctors List</h2>
               <ul class="bread-list">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><i class="icofont-simple-right"></i></li>
                 <li class="active">Doctors List</li>
               </ul>
@@ -54,30 +54,20 @@
             <th>Hospital</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Role</th>
             <th>Specialization</th>
             <th>Joined</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
           <% doctors.forEach((doctor, idx) => { %>
             <tr>
               <td><%= idx + 1 %></td>
-              <td><%= doctor.firstName + doctor.middleName + doctor.lastName %></td>
+              <td><a class="link" href="/youmustbeajoker/doctor/<%= doctor._id %>"><%= doctor.firstName + doctor.middleName + doctor.lastName %></a></td>
               <td><%= doctor.hospitalName %></td>
               <td><%= doctor.email %></td>
               <td><%= doctor.phone %></td>
-              <td><%= doctor.role %></td>
               <td><%= doctor.specialization %></td>
               <td><%= (new Date(doctor.createdAt)).toISOString() %></td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn mr-2">Edit</button>
-                  <button class="btn">Block</button>
-                  <button class="btn ml-2">Delete</button>
-                </div>
-              </td>
             </tr>
           <% }) %>
         </tbody>

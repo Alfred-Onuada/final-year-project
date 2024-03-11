@@ -44,7 +44,7 @@ export function is_logged_in(req, res, next) {
 
 export function is_admin(req, res, next) {
   try {
-    const token = req.cookies['accessToken'];
+    const token = req.cookies['adminAccessToken'];
 
     const payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 

@@ -24,7 +24,6 @@ router.post('/make-prediction', is_logged_in, make_prediction);
 
 router.patch('/update-profile-image', is_logged_in, update_profile_image);
 
-// TODO:
 router.post('/youmustbeajoker/register', is_admin, register_an_admin);
 
 router.post('/youmustbeajoker/login', admin_login);

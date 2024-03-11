@@ -51,13 +51,15 @@
             <div class="col-lg-12">
               <div class="contact-us-form">
                 <h2>Admin Log In</h2>
+                <div id="failure-container" class="alert alert-danger capitalize hide" role="alert"></div>
                 <p></p>
                 <!-- Form -->
-                <form class="form" method="post" action="mail/mail.php">
+                <form class="form" onsubmit="return adminLogin()">
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
                         <input
+                          style="text-transform: none;"
                           type="email"
                           name="email"
                           placeholder="Email"
@@ -68,6 +70,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <input
+                          style="text-transform: none;"
                           type="password"
                           name="password"
                           placeholder="Password"

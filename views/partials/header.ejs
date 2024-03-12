@@ -56,13 +56,14 @@
 
                   <!-- When Logged In -->
                   <% if (typeof role !== 'undefined') { %>
-                    <li class="nav-links"><a href="/make-prediction">Make Predictions</a></li>
+                  <li class="nav-links"><a href="/make-prediction">Make Predictions</a></li>
                   <li class="nav-links"><a href="/history">History</a></li>
                   <li class="nav-links"><a href="/profile">My Profile</a></li>
                   <li class="nav-links"><a href="/log-out">Log Out</a></li>
                   <% } %>
 
                   <% if (typeof admin !== 'undefined' && admin === true) { %>
+                    <li class="nav-links"><a href="/youmustbeajoker/doctors">Doctors List</a></li>
                     <li class="nav-links"><a href="/youmustbeajoker/create-admin">Create an Admin</a></li>
                     <li class="nav-links"><a href="/log-out">Log Out</a></li>
                   <% } %>

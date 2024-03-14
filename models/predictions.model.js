@@ -9,7 +9,7 @@ const predictionSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please specify a prediction inference'],
     enum: {
-      values: ['glioma', 'meningioma', 'pituitary'],
+      values: ['glioma','no tumor','meningioma','pituitary'],
       message: 'Please specify a valid prediction inference'
     }
   },

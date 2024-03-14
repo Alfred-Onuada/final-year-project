@@ -11,13 +11,13 @@ load_dotenv()
 app = Flask(__name__)
 
 # Load the model
-multiclass_model = tf.keras.models.load_model('./tumor-multiclass-model.h5')
+multiclass_model = tf.keras.models.load_model('./brain_tumor_model.h5')
 
 import cv2
 import numpy as np
 
 # Function to preprocess the image
-def preprocess_image(file_storage, target_size=(256, 256)):
+def preprocess_image(file_storage, target_size=(150, 150)):
     # Convert file storage to numpy array
     nparr = np.frombuffer(file_storage.read(), np.uint8)
     # Decode image
@@ -26,8 +26,6 @@ def preprocess_image(file_storage, target_size=(256, 256)):
     img = cv2.resize(img, target_size)
     # Expand the dimensions to match the model input shape
     img = np.expand_dims(img, axis=0)
-    # Normalize pixel values to the range [0, 1]
-    img = img / 255.0
     return img
 
 @app.route("/predict", methods=["POST"])
@@ -52,7 +50,7 @@ def predict():
 
         # format response
         response = {}
-        classes = ['glioma', 'meningioma', 'pituitary']
+        classes = ['glioma','no tumor','meningioma','pituitary']
 
         for idx, val in enumerate(prediction[0]):
             response[classes[idx]] = float(val)

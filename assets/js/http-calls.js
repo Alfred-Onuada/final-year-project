@@ -24,6 +24,7 @@ function showSuccess(msg) {
   }, 3000);
 }
 
+let resultTimeOut = null;
 function showPredictionResult(msg) {
   const resultDiv = document.getElementById("prediction-container");
 
@@ -31,7 +32,11 @@ function showPredictionResult(msg) {
   resultDiv.classList.remove("hide");
   resultDiv.textContent = msg;
 
-  setTimeout(() => {
+  if (resultTimeOut) {
+    clearTimeout(resultTimeOut);
+  }
+
+  resultTimeOut = setTimeout(() => {
     resultDiv.textContent = "";
     resultDiv.classList.add("hide");
   }, 20000);
@@ -381,7 +386,7 @@ function uploadImage(imageFile) {
       showPredictionResult(
         `The above image has a '${(data.data.confidenceScore * 100).toFixed(
           2
-        )}%' chance of been '${data.data.inference}`
+        )}%' chance of been '${data.data.inference}'`
       );
     })
     .catch((error) => {
